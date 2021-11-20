@@ -20,7 +20,7 @@ class HeaderComponent extends Component {
                             </Nav>
                             <Nav>
                                 <Navbar.Brand href="/login">Вход</Navbar.Brand>
-                                <Navbar.Brand href="/register">Регистрация</Navbar.Brand>
+                                <Navbar.Brand href="/registration">Регистрация</Navbar.Brand>
                             </Nav>
                         </Navbar.Collapse>
                     </Container>
