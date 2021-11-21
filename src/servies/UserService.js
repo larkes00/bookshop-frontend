@@ -1,4 +1,5 @@
 import axios from "axios";
+import jwt_decode from 'jwt-decode';
 
 const API_URL = "https://book-shop-course.herokuapp.com/api/v1";
 
@@ -20,12 +21,37 @@ class UserService {
     }
 
     isAuth() {
-
+        let jwt = localStorage["access_token"];
+        if (jwt) {
+            let decode = jwt_decode(jwt);
+            let tokenTime = decode["exp"]
+            let time = new Date();
+            if (tokenTime > time) {
+                this.refreshAccessToken();
+            }
+            return true;
+        }
+        return false;
     }
 
     logout() {
         localStorage.removeItem("access_token");
         localStorage.removeItem("refresh_token");
+        return true;
+    }
+
+    refreshAccessToken() {
+        let refreshToken = localStorage["refresh_token"];
+        axios.get(API_URL + '/token/refresh/', {
+            headers: {
+                Authorization: 'Bearer ' + refreshToken
+            }
+        }).then((res) => {
+            localStorage.setItem("access_token", res.data["access_token"])
+            localStorage.setItem("refresh_token", res.data["refresh_token"])
+        }).catch(() => {
+            this.logout();
+        });
     }
 }
 

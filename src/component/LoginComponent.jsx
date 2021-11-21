@@ -13,18 +13,16 @@ class LoginComponent extends Component {
 
         this.changeUserNameHandler = this.changeUserNameHandler.bind(this);
         this.changePasswordHandler = this.changePasswordHandler.bind(this);
-        this.registration = this.registration.bind(this);
+        this.login = this.login.bind(this);
     }
 
-    registration = (event) => {
+    login = (event) => {
         event.preventDefault();
         console.log(this.state.username, this.state.password)
-        UserService.login(this.state.username, this.state.password).then((res) => {
-            this.props.history.push('/');
-        }).catch((res) => {
-            console.log(res)
+        UserService.login(this.state.username, this.state.password).catch((res) => {
             alert('Не правильно введено данные');
         });
+        this.props.history.push('/');
     }
 
 
@@ -45,15 +43,15 @@ class LoginComponent extends Component {
                             <Form.Group className="mb-3" controlId="formUsername">
                                 <Form.Label>Логин</Form.Label>
                                 <Form.Control type="username" placeholder="Введите логин" name="username"
-                                    onChange={this.changeUserNameHandler}/>
+                                              onChange={this.changeUserNameHandler}/>
                             </Form.Group>
 
                             <Form.Group className="mb-3" controlId="formPassword">
                                 <Form.Label>Пароль</Form.Label>
                                 <Form.Control type="password" placeholder="Введите пароль" name="password"
-                                    onChange={this.changePasswordHandler}/>
+                                              onChange={this.changePasswordHandler}/>
                             </Form.Group>
-                            <Button variant="primary" type="submit" onClick={this.registration}>
+                            <Button variant="primary" type="submit" onClick={this.login}>
                                 Submit
                             </Button>
                         </Form>
