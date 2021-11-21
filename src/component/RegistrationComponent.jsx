@@ -37,13 +37,10 @@ class RegistrationComponent extends Component {
             emailAddress: this.state.emailAddress,
             phoneNumber: this.state.phoneNumber
         }
-        UserService.registration(user).then((res) => {
-            if (res.status === 200) {
-                this.props.history.push('/login');
-                console.log(res)
-            } else {
-                alert('Не правильно введенные данные')
-            }
+        UserService.registration(user).then(() => {
+            this.props.history.push('/login');
+        }).catch(() => {
+            alert('Не правильно введенные данные');
         })
     }
 
