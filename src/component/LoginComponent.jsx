@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Button, Form} from "react-bootstrap";
 import UserService from "../servies/UserService";
+import {Redirect} from "react-router-dom";
 
 class LoginComponent extends Component {
     constructor(props) {
@@ -8,7 +9,8 @@ class LoginComponent extends Component {
 
         this.state = {
             username: '',
-            password: ''
+            password: '',
+            redirect: false
         }
 
         this.changeUserNameHandler = this.changeUserNameHandler.bind(this);
@@ -19,10 +21,12 @@ class LoginComponent extends Component {
     login = (event) => {
         event.preventDefault();
         console.log(this.state.username, this.state.password)
-        UserService.login(this.state.username, this.state.password).catch((res) => {
+        UserService.login(this.state.username, this.state.password).then((res) => {
+            this.props.history.push('/');
+            window.location.reload(false);
+        }).catch(() => {
             alert('Не правильно введено данные');
         });
-        this.props.history.push('/');
     }
 
 
@@ -52,7 +56,7 @@ class LoginComponent extends Component {
                                               onChange={this.changePasswordHandler}/>
                             </Form.Group>
                             <Button variant="primary" type="submit" onClick={this.login}>
-                                Submit
+                                Войти
                             </Button>
                         </Form>
                     </div>
