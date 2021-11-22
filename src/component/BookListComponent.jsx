@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import BookService from "../servies/BookService";
-import {Card, ListGroup, ListGroupItem, Row} from "react-bootstrap";
+import {Button, Card, ListGroup, ListGroupItem, Row} from "react-bootstrap";
 import {Link} from "react-router-dom";
 
 class BookListComponent extends Component {
@@ -10,12 +10,18 @@ class BookListComponent extends Component {
         this.state = {
             books: []
         }
+        this.buy = this.buy.bind(this);
     }
 
     componentDidMount() {
         BookService.getBooks().then((res) => {
             this.setState({books: res.data});
         });
+    }
+
+    buy = (event) => {
+        event.preventDefault();
+        // Написать лоигку для добавления товара в корзину
     }
 
     render() {
@@ -26,9 +32,9 @@ class BookListComponent extends Component {
                         {
                             this.state.books.map(
                                 books =>
-                                    <Card className="m-4 p-3" style={{width: '16rem', height: '36rem'}}>
+                                    <Card className="m-4 p-3" style={{width: '16rem'}}>
                                         <Card.Img className="rounded mx-auto d-block" variant="top" src={books.image}
-                                                  style={{width: '12.5rem', height: '18rem'}}/>
+                                                  style={{width: '12.5rem'}}/>
                                         <Card.Body>
                                             <Card.Title>{books.name}</Card.Title>
                                         </Card.Body>
@@ -37,15 +43,10 @@ class BookListComponent extends Component {
                                             <ListGroupItem>{books.price} грн</ListGroupItem>
                                         </ListGroup>
                                         <Card.Body className="text-center">
-                                            <div className="col p-2">
-                                                <Card.Link>
-                                                    <Link to={`/book/${books.id}`}>
-                                                        Подробности
-                                                    </Link>
-                                                </Card.Link>
-                                            </div>
                                             <div className="col">
-                                                <Card.Link href="#">Купить</Card.Link>
+                                                <Button variant="primary" type="submit" onClick={this.buy}>
+                                                    Купить
+                                                </Button>
                                             </div>
                                         </Card.Body>
                                     </Card>

@@ -32,6 +32,7 @@ class HeaderComponent extends Component {
                                     <CategoryListComponent/>
                                 </Nav>
                                 <Nav>
+                                    <Navbar.Brand href="/" onClick={this.logout}>Корзина</Navbar.Brand>
                                     <Navbar.Brand href="/" onClick={this.logout}>Выход</Navbar.Brand>
                                 </Nav>
                             </Navbar.Collapse>
