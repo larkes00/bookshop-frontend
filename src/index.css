@@ -11,3 +11,24 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+#book-main {
+  margin-top: 10px;
+}
+
+#book-description {
+  margin-top: 10px;
+}
+
+#book-name {
+  margin-top: 20px;
+}
+
+#book-main-button {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#main-comment-form {
+  margin-top: 10px;
+}

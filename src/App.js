@@ -5,6 +5,7 @@ import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import BookListComponent from "./component/BookListComponent";
 import LoginComponent from "./component/LoginComponent";
 import RegistrationComponent from "./component/RegistrationComponent";
+import BookComponent from "./component/BookComponent";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
                 <Route exact path="/" component={BookListComponent}/>
                 <Route exact path="/login" component={LoginComponent}/>
                 <Route exact path="/registration" component={RegistrationComponent}/>
+                <Route exact path="/book/:id" component={BookComponent}/>
             </Switch>
         </Router>
     </div>
