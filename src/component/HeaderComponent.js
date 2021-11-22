@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
-import {Container, Nav, Navbar} from "react-bootstrap";
+import {Container, Image, Nav, Navbar} from "react-bootstrap";
 import CategoryListComponent from "./CategoryListComponent";
 import UserService from "../servies/UserService";
+import {Link} from "react-router-dom";
 
 
 class HeaderComponent extends Component {
@@ -24,16 +25,20 @@ class HeaderComponent extends Component {
                 <div>
                     <Navbar bg="light" expand="lg">
                         <Container>
-                            <Navbar.Brand href="#home">BookShop</Navbar.Brand>
+                            <Navbar.Brand href="/">BookShop</Navbar.Brand>
                             <Navbar.Toggle aria-controls="basic-navbar-nav"/>
                             <Navbar.Collapse className="justify-content-between" id="basic-navbar-nav">
                                 <Nav>
                                     <Nav.Link href="/">Главная</Nav.Link>
                                     <CategoryListComponent/>
                                 </Nav>
-                                <Nav>
-                                    <Navbar.Brand href="/" onClick={this.logout}>Корзина</Navbar.Brand>
-                                    <Navbar.Brand href="/" onClick={this.logout}>Выход</Navbar.Brand>
+                                <Nav className="position-relative">
+                                    <div>
+                                        <Navbar.Brand href="/orders" className="">
+                                            <Image src="/Basket.png" className="m-2" style={{width: '1.8rem'}}/>Корзина
+                                        </Navbar.Brand>
+                                        <Navbar.Brand href="/" onClick={this.logout}>Выход</Navbar.Brand>
+                                    </div>
                                 </Nav>
                             </Navbar.Collapse>
                         </Container>

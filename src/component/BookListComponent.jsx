@@ -33,15 +33,18 @@ class BookListComponent extends Component {
                             this.state.books.map(
                                 books =>
                                     <Card className="m-4 p-3" style={{width: '16rem'}}>
-                                        <Card.Img className="rounded mx-auto d-block" variant="top" src={books.image}
-                                                  style={{width: '12.5rem'}}/>
-                                        <Card.Body>
-                                            <Card.Title>{books.name}</Card.Title>
-                                        </Card.Body>
-                                        <ListGroup className="list-group-flush text-center">
-                                            <ListGroupItem>{books.category}</ListGroupItem>
-                                            <ListGroupItem>{books.price} грн</ListGroupItem>
-                                        </ListGroup>
+                                        <div style={{transform: "rotate(0)"}}>
+                                            <Card.Img className="rounded mx-auto d-block" variant="top" src={books.image}
+                                                      style={{width: '12.5rem', height: '18rem'}}/>
+                                            <Card.Body>
+                                                <Card.Title className="text-truncate">{books.name}</Card.Title>
+                                            </Card.Body>
+                                            <ListGroup className="list-group-flush text-center">
+                                                <ListGroupItem>{books.category}</ListGroupItem>
+                                                <ListGroupItem>{books.price} грн</ListGroupItem>
+                                            </ListGroup>
+                                            <Link className="stretched-link" to={`/book/${books.id}`}/>
+                                        </div>
                                         <Card.Body className="text-center">
                                             <div className="col">
                                                 <Button variant="primary" type="submit" onClick={this.buy}>
