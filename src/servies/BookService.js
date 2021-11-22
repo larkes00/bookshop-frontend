@@ -21,6 +21,10 @@ class BookService {
         return axios.delete(API_URL + '/books/' + id)
     }
 
+    getBookComments(id) {
+        return axios.get(API_URL + '/books/'+ id + '/comments/');
+    }
+
 }
 
 export default new BookService()
