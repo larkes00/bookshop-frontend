@@ -53,6 +53,10 @@ class UserService {
             this.logout();
         });
     }
+
+    getUserByUserName(username) {
+        return axios.get(API_URL + '/users/' + username + '/');
+    }
 }
 
 export default new UserService()
