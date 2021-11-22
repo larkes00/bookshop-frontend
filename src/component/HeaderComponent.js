@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
-import {Container, Image, Nav, Navbar} from "react-bootstrap";
+import {Button, Container, Form, FormControl, Image, Nav, Navbar, NavDropdown} from "react-bootstrap";
 import CategoryListComponent from "./CategoryListComponent";
 import UserService from "../servies/UserService";
-import {Link} from "react-router-dom";
 
 
 class HeaderComponent extends Component {
@@ -25,20 +24,32 @@ class HeaderComponent extends Component {
                 <div>
                     <Navbar bg="light" expand="lg">
                         <Container>
-                            <Navbar.Brand href="/">BookShop</Navbar.Brand>
-                            <Navbar.Toggle aria-controls="basic-navbar-nav"/>
-                            <Navbar.Collapse className="justify-content-between" id="basic-navbar-nav">
-                                <Nav>
+                            <Navbar.Brand href="/">
+                                <Navbar.Brand href="/">
+                                    <Image src="/book-icon-72-191918.png" style={{width: '1.8rem'}}/>
+                                </Navbar.Brand>
+                                <Navbar.Brand href="/">
+                                    Bookshop
+                                </Navbar.Brand>
+                            </Navbar.Brand>
+                            <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
+                            <Navbar.Collapse id="responsive-navbar-nav">
+                                <Nav className="me-auto">
                                     <Nav.Link href="/">Главная</Nav.Link>
                                     <CategoryListComponent/>
                                 </Nav>
-                                <Nav className="position-relative">
-                                    <div>
-                                        <Navbar.Brand href="/orders" className="">
-                                            <Image src="/Basket.png" className="m-2" style={{width: '1.8rem'}}/>Корзина
-                                        </Navbar.Brand>
-                                        <Navbar.Brand href="/" onClick={this.logout}>Выход</Navbar.Brand>
-                                    </div>
+                                <Nav>
+                                    <a href="/orders">
+                                        <Image
+                                            src="/Basket.png"
+                                            className="m-2"
+                                            style={{width: '1.8rem'}}
+                                            href="/orders"
+                                        />
+                                    </a>
+                                    <Nav.Link href="/">Корзина</Nav.Link>
+                                    <Nav.Link href="/">Профиль</Nav.Link>
+                                    <Nav.Link href="/" onClick={this.logout}>Выход</Nav.Link>
                                 </Nav>
                             </Navbar.Collapse>
                         </Container>
@@ -50,7 +61,14 @@ class HeaderComponent extends Component {
             <div>
                 <Navbar bg="light" expand="lg">
                     <Container>
-                        <Navbar.Brand href="#home">BookShop</Navbar.Brand>
+                        <Navbar.Brand href="/">
+                            <Navbar.Brand href="/">
+                                <Image src="/book-icon-72-191918.png" style={{width: '1.8rem'}}/>
+                            </Navbar.Brand>
+                            <Navbar.Brand href="/">
+                                Bookshop
+                            </Navbar.Brand>
+                        </Navbar.Brand>
                         <Navbar.Toggle aria-controls="basic-navbar-nav"/>
                         <Navbar.Collapse className="justify-content-between" id="basic-navbar-nav">
                             <Nav>
