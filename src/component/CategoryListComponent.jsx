@@ -23,8 +23,10 @@ class CategoryListComponent extends Component {
                 {
                     this.state.categories.map(
                         category =>
-                            <NavDropdown.Item key={category.categoryId}>
-                                <div onClick={this.click}>{category.name}</div>
+                            <NavDropdown.Item
+                                key={category}
+                                href={`/category/${category.categoryId}`}>
+                                <div id="category-link">{category.name}</div>
                             </NavDropdown.Item>
                     )
                 }

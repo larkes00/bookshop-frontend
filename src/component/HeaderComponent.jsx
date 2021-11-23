@@ -1,12 +1,17 @@
 import React, {Component} from 'react';
-import {Button, Container, Form, FormControl, Image, Nav, Navbar, NavDropdown} from "react-bootstrap";
+import {Container, Image, Nav, Navbar} from "react-bootstrap";
 import CategoryListComponent from "./CategoryListComponent";
 import UserService from "../servies/UserService";
+import CategoryService from "../servies/CategoryService";
+import {Link} from "react-router-dom";
 
 
 class HeaderComponent extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            categories: []
+        }
 
         this.logout = this.logout.bind(this);
     }
@@ -17,6 +22,11 @@ class HeaderComponent extends Component {
         this.props.history.push('/');
     }
 
+    componentDidMount() {
+        CategoryService.getCategories().then((res) => {
+            this.setState({categories: res.data});
+        })
+    }
 
     render() {
         if (UserService.isAuth()) {
@@ -39,14 +49,14 @@ class HeaderComponent extends Component {
                                     <CategoryListComponent/>
                                 </Nav>
                                 <Nav>
-                                    <a href="/orders">
+                                    <Link to={"/orders"}>
                                         <Image
                                             src="/Basket.png"
                                             className="m-2"
                                             style={{width: '1.8rem'}}
                                             href="/orders"
                                         />
-                                    </a>
+                                    </Link>
                                     <Nav.Link href="/">Корзина</Nav.Link>
                                     <Nav.Link href="/">Профиль</Nav.Link>
                                     <Nav.Link href="/" onClick={this.logout}>Выход</Nav.Link>

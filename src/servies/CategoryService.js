@@ -8,8 +8,8 @@ class CategoryService {
         return axios.get(API_URL + '/categories/');
     }
 
-    getCategory(id) {
-        return axios.get(API_URL + '/categories/' + id);
+    getBooksByCategoryId(id) {
+        return axios.get(API_URL + '/categories/' + id + '/books/');
     }
 }
 

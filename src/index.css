@@ -32,3 +32,8 @@ code {
 #main-comment-form {
   margin-top: 10px;
 }
+
+#category-link {
+  text-decoration: none;
+  color: #000000;
+}
