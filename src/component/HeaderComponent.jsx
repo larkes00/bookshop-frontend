@@ -49,6 +49,7 @@ class HeaderComponent extends Component {
                                     <CategoryListComponent/>
                                 </Nav>
                                 <Nav>
+                                    <Nav.Link href="/admin">Панель администратора</Nav.Link>
                                     <Link to={"/orders"}>
                                         <Image
                                             src="/Basket.png"
@@ -58,7 +59,7 @@ class HeaderComponent extends Component {
                                         />
                                     </Link>
                                     <Nav.Link href="/card">Корзина</Nav.Link>
-                                    <Nav.Link href="/">Профиль</Nav.Link>
+                                    <Nav.Link href="/profile">Профиль</Nav.Link>
                                     <Nav.Link href="/" onClick={this.logout}>Выход</Nav.Link>
                                 </Nav>
                             </Navbar.Collapse>

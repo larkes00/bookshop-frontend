@@ -8,6 +8,7 @@ class CommentService {
 
     createComment(id, content) {
         let jwt = localStorage["access_token"];
+        UserService.isAuth();
         let decode = jwt_decode(jwt);
         let username = decode["sub"]
         UserService.getUserByUserName(username).then((res) => {
@@ -23,6 +24,10 @@ class CommentService {
                     }
                 });
         });
+    }
+
+    getAllComments() {
+        return axios.get(API_URL + '/comments/');
     }
 }
 

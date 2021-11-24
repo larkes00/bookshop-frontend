@@ -17,7 +17,6 @@ class BookListComponent extends Component {
     componentDidMount() {
         BookService.getBooks().then((res) => {
             this.setState({books: res.data});
-            console.log(res.data)
         });
     }
 
