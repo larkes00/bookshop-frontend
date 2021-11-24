@@ -57,7 +57,7 @@ class HeaderComponent extends Component {
                                             href="/orders"
                                         />
                                     </Link>
-                                    <Nav.Link href="/">Корзина</Nav.Link>
+                                    <Nav.Link href="/card">Корзина</Nav.Link>
                                     <Nav.Link href="/">Профиль</Nav.Link>
                                     <Nav.Link href="/" onClick={this.logout}>Выход</Nav.Link>
                                 </Nav>

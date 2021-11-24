@@ -25,6 +25,18 @@ class OrderService {
             alert('Необходимо залогиниться что бы совершить покупку')
         }
     }
+
+    basketList() {
+        let jwt = localStorage["access_token"];
+        if (jwt) {
+            let decode = jwt_decode(jwt);
+            let username = decode["sub"]
+            return UserService.getUserByUserName(username).then((res) => {
+                return axios.get(API_URL + '/orders/books/user/' + res.data.id + '/');
+            });
+        }
+    }
+
 }
 
 export default new OrderService()
