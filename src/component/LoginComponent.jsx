@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {Button, Form} from "react-bootstrap";
 import UserService from "../servies/UserService";
-import {Redirect} from "react-router-dom";
 
 class LoginComponent extends Component {
     constructor(props) {
@@ -20,7 +19,6 @@ class LoginComponent extends Component {
 
     login = (event) => {
         event.preventDefault();
-        console.log(this.state.username, this.state.password)
         UserService.login(this.state.username, this.state.password).then((res) => {
             this.props.history.push('/');
             window.location.reload(false);

@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import BookService from "../servies/BookService";
 import {Button, Card, ListGroup, ListGroupItem, Row} from "react-bootstrap";
 import {Link} from "react-router-dom";
+import OrderService from "../servies/OrderService";
 
 class BookListComponent extends Component {
     constructor(props) {
@@ -19,9 +20,8 @@ class BookListComponent extends Component {
         });
     }
 
-    buy = (event) => {
-        event.preventDefault();
-        // Написать лоигку для добавления товара в корзину
+    buy(event) {
+        OrderService.addItemToOrder(event.target.value);
     }
 
     render() {
@@ -34,7 +34,8 @@ class BookListComponent extends Component {
                                 books =>
                                     <Card className="m-4 p-3" style={{width: '16rem'}}>
                                         <div style={{transform: "rotate(0)"}}>
-                                            <Card.Img className="rounded mx-auto d-block" variant="top" src={books.image}
+                                            <Card.Img className="rounded mx-auto d-block" variant="top"
+                                                      src={books.image}
                                                       style={{width: '12.5rem', height: '18rem'}}/>
                                             <Card.Body>
                                                 <Card.Title className="text-truncate">{books.name}</Card.Title>
@@ -47,7 +48,7 @@ class BookListComponent extends Component {
                                         </div>
                                         <Card.Body className="text-center">
                                             <div className="col">
-                                                <Button variant="primary" type="submit" onClick={this.buy}>
+                                                <Button variant="primary" value={books.id} type="submit" onClick={this.buy}>
                                                     Купить
                                                 </Button>
                                             </div>

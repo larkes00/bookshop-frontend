@@ -34,7 +34,6 @@ class BookComponent extends Component {
         });
         BookService.getBookComments(this.state.id).then((res) => {
             this.setState({comments: res.data});
-            console.log(res.data)
         });
     }
 
@@ -69,16 +68,7 @@ class BookComponent extends Component {
                 </div>
                 <div className="row" id="book-description">
                     <h4>Описание</h4>
-                    {/*<p align="justify">{this.state.description}</p>*/}
-                    <p align="justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta doloribus
-                        eligendi, inventore libero nesciunt nulla similique totam vero. Commodi consequatur deleniti est
-                        eveniet ex excepturi exercitationem nostrum. Atque autem commodi consectetur, consequuntur
-                        deserunt dicta ducimus, eligendi exercitationem facilis incidunt laboriosam obcaecati omnis
-                        placeat, praesentium veritatis! Ad aliquid ea impedit iusto magnam molestias nihil quidem.
-                        Accusantium asperiores debitis dicta ducimus est facilis illo impedit nemo nihil perspiciatis.
-                        Aspernatur cupiditate error labore nam voluptas. Ad aperiam atque, dicta eius et in ipsum iste
-                        iusto maxime minima, molestiae nemo nihil, numquam quia quis repellendus saepe vel voluptatibus.
-                        Iste neque qui quos similique unde.</p>
+                    <p align="justify">{this.state.description}</p>
                 </div>
                 <div className="row">
                     <div>
