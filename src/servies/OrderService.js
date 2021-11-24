@@ -37,6 +37,10 @@ class OrderService {
         }
     }
 
+    getAllOrders() {
+        return axios.get(API_URL + '/orders/');
+    }
+
 }
 
 export default new OrderService()

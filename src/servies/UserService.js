@@ -57,6 +57,10 @@ class UserService {
     getUserByUserName(username) {
         return axios.get(API_URL + '/users/' + username + '/');
     }
+
+    getAllUsers() {
+        return axios.get(API_URL + '/users/');
+    }
 }
 
 export default new UserService()
