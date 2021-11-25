@@ -10,6 +10,7 @@ class AdminBooksComponent extends Component {
         this.state = {
             books: []
         }
+        this.deleteBook = this.deleteBook.bind(this);
     }
 
     componentDidMount() {
@@ -17,6 +18,12 @@ class AdminBooksComponent extends Component {
             let result = res.data.sort(res.data.id);
             this.setState({books: result});
         });
+    }
+
+    deleteBook = (event) => {
+        event.preventDefault();
+        let id = event.target.value;
+        BookService.deleteBook(id);
     }
 
     render() {
@@ -47,7 +54,7 @@ class AdminBooksComponent extends Component {
                                 <div className="col">{book.name}</div>
                                 <div className="col">{book.category}</div>
                                 <div className="col">
-                                    <Button className="m-l">Удалить</Button>
+                                    <Button className="m-l" value={book.id} onClick={this.deleteBook}>Удалить</Button>
                                     <Button className="m-1">Изменить</Button>
                                 </div>
                             </div>

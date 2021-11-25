@@ -10,12 +10,19 @@ class AdminCategoriesComponent extends Component {
         this.state = {
             categories: []
         }
+        this.deleteCategory = this.deleteCategory.bind(this);
     }
 
     componentDidMount() {
         CategoryService.getCategories().then((res) => {
             this.setState({categories: res.data})
         })
+    }
+
+    deleteCategory = (event) => {
+        event.preventDefault();
+        let id = event.target.value;
+        CategoryService.deleteCategory(id);
     }
 
     render() {
@@ -44,7 +51,8 @@ class AdminCategoriesComponent extends Component {
                                 <div className="col">{category.categoryId}</div>
                                 <div className="col">{category.name}</div>
                                 <div className="col">
-                                    <Button className="m-l">Удалить</Button>
+                                    <Button className="m-l" value={category.categoryId}
+                                            onClick={this.deleteCategory}>Удалить</Button>
                                     <Button className="m-1">Изменить</Button>
                                 </div>
                             </div>
