@@ -18,7 +18,7 @@ class OrderService {
                         "userId": res.data.id,
                         "bookId": bookId
                     }).then(() => {
-                        alert("Товар добавлен в корзину")
+                    alert("Товар добавлен в корзину")
                 });
             });
         } else {
@@ -44,14 +44,10 @@ class OrderService {
     deleteOrder(id) {
         let jwt = localStorage["access_token"];
         UserService.isAuth();
-        let decode = jwt_decode(jwt);
-        let username = decode["sub"]
-        UserService.getUserByUserName(username).then((res) => {
-            return axios.delete(API_URL + '/orders/' + id + '/', {
-                headers: {
-                    Authorization: 'Bearer ' + jwt
-                }
-            })
+        return axios.delete(API_URL + '/orders/' + id + '/', {
+            headers: {
+                Authorization: 'Bearer ' + jwt
+            }
         });
     }
 

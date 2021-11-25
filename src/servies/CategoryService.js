@@ -17,14 +17,10 @@ class CategoryService {
     deleteCategory(id) {
         let jwt = localStorage["access_token"];
         UserService.isAuth();
-        let decode = jwt_decode(jwt);
-        let username = decode["sub"]
-        UserService.getUserByUserName(username).then((res) => {
-            return axios.delete(API_URL + '/categories/' + id + '/', {
-                headers: {
-                    Authorization: 'Bearer ' + jwt
-                }
-            })
+        return axios.delete(API_URL + '/categories/' + id + '/', {
+            headers: {
+                Authorization: 'Bearer ' + jwt
+            }
         });
     }
 }
