@@ -24,6 +24,9 @@ class AdminBooksComponent extends Component {
         event.preventDefault();
         let id = event.target.value;
         BookService.deleteBook(id);
+        setTimeout(time => {
+            window.location.reload(false);
+        }, 1500);
     }
 
     render() {

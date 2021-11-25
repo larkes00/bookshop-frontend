@@ -61,6 +61,20 @@ class UserService {
     getAllUsers() {
         return axios.get(API_URL + '/users/');
     }
+
+    deleteUser(id) {
+        let jwt = localStorage["access_token"];
+        this.isAuth();
+        let decode = jwt_decode(jwt);
+        let username = decode["sub"]
+        this.getUserByUserName(username).then((res) => {
+            return axios.delete(API_URL + '/users/' + id + '/', {
+                headers: {
+                    Authorization: 'Bearer ' + jwt
+                }
+            })
+        });
+    }
 }
 
 export default new UserService()

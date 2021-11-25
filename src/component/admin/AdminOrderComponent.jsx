@@ -10,13 +10,23 @@ class AdminOrderComponent extends Component {
         this.state = {
             orders: []
         }
+
+        this.deleteOrder = this.deleteOrder.bind(this);
     }
 
     componentDidMount() {
         OrderService.getAllOrders().then((res) => {
             this.setState({orders: res.data})
-            console.log(this.state.orders)
         })
+    }
+
+    deleteOrder = (event) => {
+        event.preventDefault();
+        let id = event.target.value;
+        OrderService.deleteOrder(id);
+        setTimeout(time => {
+            window.location.reload(false);
+        }, 1500);
     }
 
     render() {
@@ -49,7 +59,8 @@ class AdminOrderComponent extends Component {
                                 <div className="col">{order.deliveryAddress}</div>
                                 <div className="col">{order.books}</div>
                                 <div className="col">
-                                    <Button className="m-l">Удалить</Button>
+                                    <Button className="m-l" value={order.orderId}
+                                            onClick={this.deleteOrder}>Удалить</Button>
                                     <Button className="m-1">Изменить</Button>
                                 </div>
                             </div>

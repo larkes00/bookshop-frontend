@@ -29,6 +29,20 @@ class CommentService {
     getAllComments() {
         return axios.get(API_URL + '/comments/');
     }
+
+    deleteComment(id) {
+        let jwt = localStorage["access_token"];
+        UserService.isAuth();
+        let decode = jwt_decode(jwt);
+        let username = decode["sub"]
+        UserService.getUserByUserName(username).then((res) => {
+            return axios.delete(API_URL + '/comments/' + id + '/', {
+                headers: {
+                    Authorization: 'Bearer ' + jwt
+                }
+            })
+        });
+    }
 }
 
 export default new CommentService();

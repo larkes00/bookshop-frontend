@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Link} from "react-router-dom";
 import {Button} from "react-bootstrap";
 import UserService from "../../servies/UserService";
+import OrderService from "../../servies/OrderService";
 
 class AdminUserComponent extends Component {
     constructor(props) {
@@ -10,12 +11,23 @@ class AdminUserComponent extends Component {
         this.state = {
             users: []
         }
+
+        this.deleteUser = this.deleteUser.bind(this);
     }
 
     componentDidMount() {
         UserService.getAllUsers().then((res) => {
             this.setState({users: res.data})
         })
+    }
+
+    deleteUser = (event) => {
+        event.preventDefault();
+        let id = event.target.value;
+        UserService.deleteUser(id);
+        setTimeout(time => {
+            window.location.reload(false);
+        }, 1500);
     }
 
     render() {
@@ -48,7 +60,8 @@ class AdminUserComponent extends Component {
                                 <div className="col">{user.email}</div>
                                 <div className="col">{user.phoneNumber}</div>
                                 <div className="col">
-                                    <Button className="m-l">Удалить</Button>
+                                    <Button className="m-l" value={user.userId}
+                                            onClick={this.deleteUser}>Удалить</Button>
                                     <Button className="m-1">Изменить</Button>
                                 </div>
                             </div>

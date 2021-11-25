@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Link} from "react-router-dom";
 import {Button} from "react-bootstrap";
 import CommentService from "../../servies/CommentService";
+import CategoryService from "../../servies/CategoryService";
 
 class AdminCommentComponent extends Component {
     constructor(props) {
@@ -10,6 +11,7 @@ class AdminCommentComponent extends Component {
         this.state = {
             comments: []
         }
+        this.deleteComment = this.deleteComment.bind(this);
     }
 
     componentDidMount() {
@@ -17,6 +19,15 @@ class AdminCommentComponent extends Component {
             this.setState({comments: res.data})
             console.log(res.data)
         })
+    }
+
+    deleteComment = (event) => {
+        event.preventDefault();
+        let id = event.target.value;
+        CommentService.deleteComment(id);
+        setTimeout(time => {
+            window.location.reload(false);
+        }, 1500);
     }
 
     render() {
@@ -49,7 +60,8 @@ class AdminCommentComponent extends Component {
                                 <div className="col">{comment.userId}</div>
                                 <div className="col">{comment.bookId}</div>
                                 <div className="col">
-                                    <Button className="m-l">Удалить</Button>
+                                    <Button className="m-l" value={comment.id}
+                                            onClick={this.deleteComment}>Удалить</Button>
                                     <Button className="m-1">Изменить</Button>
                                 </div>
                             </div>

@@ -41,6 +41,20 @@ class OrderService {
         return axios.get(API_URL + '/orders/');
     }
 
+    deleteOrder(id) {
+        let jwt = localStorage["access_token"];
+        UserService.isAuth();
+        let decode = jwt_decode(jwt);
+        let username = decode["sub"]
+        UserService.getUserByUserName(username).then((res) => {
+            return axios.delete(API_URL + '/orders/' + id + '/', {
+                headers: {
+                    Authorization: 'Bearer ' + jwt
+                }
+            })
+        });
+    }
+
 }
 
 export default new OrderService()

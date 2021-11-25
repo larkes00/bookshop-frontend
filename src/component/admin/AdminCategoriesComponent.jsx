@@ -23,6 +23,9 @@ class AdminCategoriesComponent extends Component {
         event.preventDefault();
         let id = event.target.value;
         CategoryService.deleteCategory(id);
+        setTimeout(time => {
+            window.location.reload(false);
+        }, 1500);
     }
 
     render() {
