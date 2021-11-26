@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import OrderService from "../servies/OrderService";
-import {Button, Image, Table} from "react-bootstrap";
+import {Button, Form, Image, Table} from "react-bootstrap";
 
 class CardComponent extends Component {
     constructor(props) {
@@ -9,9 +9,11 @@ class CardComponent extends Component {
         this.state = {
             orderId: '',
             items: [],
-            fullPrice: ''
+            fullPrice: '',
+            address: ''
         }
         this.deleteItem = this.deleteItem.bind(this);
+        this.changeDestinationAddressHandler = this.changeDestinationAddressHandler.bind(this);
     }
 
     componentDidMount() {
@@ -24,9 +26,29 @@ class CardComponent extends Component {
         });
     }
 
+    changeDestinationAddressHandler(event) {
+        this.setState({address: event.target.value});
+    }
+
     deleteItem = (event) => {
         OrderService.deleteItemFromOrder(this.state.orderId, event.target.value);
         window.location.reload();
+    }
+
+    orderedItems = (event) => {
+        event.preventDefault();
+        if (!this.state.address) {
+            alert("Не установлено адресс доставки");
+        }
+        if (this.state.items.length === 0) {
+            alert("Нет товаров для заказа");
+        }
+        OrderService.setDestinationAddress(this.state.orderId, this.state.address).then((res) => {
+            alert('Заказ создан');
+            this.props.history.goBack();
+        }).catch((res) => {
+            alert('Произошла ошибка');
+        });
     }
 
     render() {
@@ -68,7 +90,15 @@ class CardComponent extends Component {
                     </tr>
                 </Table>
                 <div className="col text-center m-3">
-                    <Button className="text-center" style={{width: '7rem', 'font-size': '1.2rem'}}>Заказать</Button>
+                    <Form className="col-md-6 offset-md-3 offset-md-3">
+                        <Form.Group className="mb-3" controlId="formUsername">
+                            <Form.Label>Адресс доставки</Form.Label>
+                            <Form.Control type="username" placeholder="Введите адресс доставки"
+                                          onChange={this.changeDestinationAddressHandler}/>
+                        </Form.Group>
+                        <Button className="text-center" style={{width: '7rem', 'font-size': '1.2rem'}}
+                                onClick={this.orderedItems}>Заказать</Button>
+                    </Form>
                 </div>
             </div>
         );
