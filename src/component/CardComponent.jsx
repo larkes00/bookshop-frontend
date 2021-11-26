@@ -26,6 +26,7 @@ class CardComponent extends Component {
 
     deleteItem = (event) => {
         OrderService.deleteItemFromOrder(this.state.orderId, event.target.value);
+        window.location.reload();
     }
 
     render() {

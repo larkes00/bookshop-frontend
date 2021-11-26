@@ -46,7 +46,7 @@ class BookComponent extends Component {
     setComment = (event) => {
         event.preventDefault();
         CommentService.createComment(this.state.id, this.state.comment);
-        // window.location.reload();
+        window.location.reload();
     }
 
     buy(event) {

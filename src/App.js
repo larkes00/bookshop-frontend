@@ -16,8 +16,39 @@ import AdminOrderComponent from "./component/admin/AdminOrderComponent";
 import AdminUserComponent from "./component/admin/AdminUserComponent";
 import AdminCreateCategoryComponent from "./component/admin/creation/AdminCreateCategoryComponent";
 import AdminCreateBookComponent from "./component/admin/creation/AdminCreateBookComponent";
+import jwt_decode from "jwt-decode";
 
 function App() {
+    let jwt = localStorage["access_token"];
+    if (jwt) {
+        let decode = jwt_decode(jwt);
+        if (decode["roles"][0] === "ADMIN") {
+            return (
+                <div className="App">
+                    <Router>
+                        <HeaderComponent/>
+                        <Switch>
+                            <Route exact path="/" component={BookListComponent}/>
+                            <Route exact path="/category/:id" component={CategoryBookListComponent}/>
+                            <Route exact path="/login" component={LoginComponent}/>
+                            <Route exact path="/registration" component={RegistrationComponent}/>
+                            <Route path="/book/:id" component={BookComponent}/>
+                            <Route exact path="/card" component={CardComponent}/>
+                            <Route exact path="/profile" component={ProfileComponent}/>
+                            <Route exact path="/admin" component={AdminBooksComponent}/>
+                            <Route exact path="/admin/categories" component={AdminCategoriesComponent}/>
+                            <Route exact path="/admin/comments" component={AdminCommentComponent}/>
+                            <Route exact path="/admin/orders" component={AdminOrderComponent}/>
+                            <Route exact path="/admin/users" component={AdminUserComponent}/>
+                            <Route exact path="/admin/category/create" component={AdminCreateCategoryComponent}/>
+                            <Route exact path="/admin/book/create" component={AdminCreateBookComponent}/>
+                        </Switch>
+                    </Router>
+                </div>
+            );
+        }
+    }
+
     return (
         <div className="App">
             <Router>
@@ -30,13 +61,6 @@ function App() {
                     <Route path="/book/:id" component={BookComponent}/>
                     <Route exact path="/card" component={CardComponent}/>
                     <Route exact path="/profile" component={ProfileComponent}/>
-                    <Route exact path="/admin" component={AdminBooksComponent}/>
-                    <Route exact path="/admin/categories" component={AdminCategoriesComponent}/>
-                    <Route exact path="/admin/comments" component={AdminCommentComponent}/>
-                    <Route exact path="/admin/orders" component={AdminOrderComponent}/>
-                    <Route exact path="/admin/users" component={AdminUserComponent}/>
-                    <Route exact path="/admin/category/create" component={AdminCreateCategoryComponent}/>
-                    <Route exact path="/admin/book/create" component={AdminCreateBookComponent}/>
                 </Switch>
             </Router>
         </div>

@@ -4,13 +4,15 @@ import CategoryListComponent from "./CategoryListComponent";
 import UserService from "../servies/UserService";
 import CategoryService from "../servies/CategoryService";
 import {Link} from "react-router-dom";
+import jwt_decode from "jwt-decode";
 
 
 class HeaderComponent extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            categories: []
+            categories: [],
+            decode: ''
         }
 
         this.logout = this.logout.bind(this);
@@ -25,7 +27,12 @@ class HeaderComponent extends Component {
     componentDidMount() {
         CategoryService.getCategories().then((res) => {
             this.setState({categories: res.data});
-        })
+        });
+        let jwt = localStorage["access_token"];
+        if (jwt) {
+            let decode_jwt = jwt_decode(jwt);
+            this.setState({decode: decode_jwt["roles"][0]});
+        }
     }
 
     render() {
@@ -49,7 +56,11 @@ class HeaderComponent extends Component {
                                     <CategoryListComponent/>
                                 </Nav>
                                 <Nav>
-                                    <Nav.Link href="/admin">Панель администратора</Nav.Link>
+                                    {this.state.decode === "ADMIN" ?
+                                        <Nav.Link href="/admin">Панель администратора</Nav.Link>
+                                        :
+                                        <div/>
+                                    }
                                     <Link to={"/orders"}>
                                         <Image
                                             src="/Basket.png"
