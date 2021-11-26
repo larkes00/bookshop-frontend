@@ -16,10 +16,6 @@ code {
   margin-top: 10px;
 }
 
-#book-description {
-  margin-top: 10px;
-}
-
 #book-name {
   margin-top: 20px;
 }
@@ -36,4 +32,8 @@ code {
 #category-link {
   text-decoration: none;
   color: #000000;
+}
+
+#card-book {
+  margin-left: 5rem;
 }

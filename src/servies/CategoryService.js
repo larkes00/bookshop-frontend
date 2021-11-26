@@ -23,6 +23,20 @@ class CategoryService {
             }
         });
     }
+
+    createCategory(name) {
+        let jwt = localStorage["access_token"];
+        UserService.isAuth();
+        return axios.post(API_URL + '/categories/',
+            {
+                "name": name
+            },
+            {
+                headers: {
+                    Authorization: 'Bearer ' + jwt
+                }
+            });
+    }
 }
 
 export default new CategoryService();

@@ -14,6 +14,7 @@ import AdminCategoriesComponent from "./component/admin/AdminCategoriesComponent
 import AdminCommentComponent from "./component/admin/AdminCommentComponent";
 import AdminOrderComponent from "./component/admin/AdminOrderComponent";
 import AdminUserComponent from "./component/admin/AdminUserComponent";
+import AdminCreateCategoryComponent from "./component/admin/creation/AdminCreateCategoryComponent";
 
 function App() {
     return (
@@ -33,6 +34,7 @@ function App() {
                     <Route exact path="/admin/comments" component={AdminCommentComponent}/>
                     <Route exact path="/admin/orders" component={AdminOrderComponent}/>
                     <Route exact path="/admin/users" component={AdminUserComponent}/>
+                    <Route exact path="/admin/category/create" component={AdminCreateCategoryComponent}/>
                 </Switch>
             </Router>
         </div>
