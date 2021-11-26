@@ -41,7 +41,9 @@ class AdminBooksComponent extends Component {
                 </div>
                 <div className="col">
                     <div className="m-3">
-                        <Button>Добавить книгу</Button>
+                        <Link to="/admin/book/create">
+                            <Button>Добавить книгу</Button>
+                        </Link>
                     </div>
                     <div className="row">
                         <div className="col">ID</div>

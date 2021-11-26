@@ -39,10 +39,7 @@ class AdminOrderComponent extends Component {
                     <Link class="m-2" to="/admin/orders"><Button>Заказы</Button></Link>
                     <Link class="m-2" to="/admin/users"><Button>Пользователи</Button></Link>
                 </div>
-                <div className="col">
-                    <div className="m-3">
-                        <Button>Добавить заказ</Button>
-                    </div>
+                <div className="col m-3">
                     <div className="row">
                         <div className="col">ID</div>
                         <div className="col">Статус</div>

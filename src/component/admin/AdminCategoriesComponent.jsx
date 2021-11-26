@@ -40,7 +40,9 @@ class AdminCategoriesComponent extends Component {
                 </div>
                 <div className="col">
                     <div className="m-3">
-                        <Button>Добавить категорию</Button>
+                        <Link to="/admin/category/create">
+                            <Button>Добавить категорию</Button>
+                        </Link>
                     </div>
                     <div className="row">
                         <div className="col">ID</div>

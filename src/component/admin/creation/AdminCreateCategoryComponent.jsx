@@ -20,6 +20,7 @@ class AdminCreateCategoryComponent extends Component {
     create = (event) => {
         event.preventDefault();
         CategoryService.createCategory(this.state.name);
+        this.props.history.goBack();
     }
 
     render() {
