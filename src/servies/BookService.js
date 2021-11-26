@@ -15,8 +15,23 @@ class BookService {
     }
 
 
-    createBook() {
-        return axios.post(API_URL + '/books/');
+    createBook(name, description, price, booksAvailableNumber, categoryId, image) {
+        let jwt = localStorage["access_token"];
+        UserService.isAuth();
+        return axios.post(API_URL + '/books/',
+            {
+                "name": name,
+                "description": description,
+                "image": image,
+                "price": price,
+                "booksAvailableNumber": booksAvailableNumber,
+                "category": {"categoryId": categoryId}
+            },
+            {
+                headers: {
+                    Authorization: 'Bearer ' + jwt
+                }
+            });
     }
 
     deleteBook(id) {
