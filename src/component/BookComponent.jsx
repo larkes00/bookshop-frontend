@@ -3,6 +3,7 @@ import BookService from "../servies/BookService";
 import {Button, FloatingLabel, Form, Image} from "react-bootstrap";
 import UserService from "../servies/UserService";
 import CommentService from "../servies/CommentService";
+import OrderService from "../servies/OrderService";
 
 class BookComponent extends Component {
     constructor(props) {
@@ -21,6 +22,7 @@ class BookComponent extends Component {
         }
 
         this.changeCommentHandler = this.changeCommentHandler.bind(this);
+        this.buy = this.buy.bind(this);
     }
 
     componentDidMount() {
@@ -47,29 +49,33 @@ class BookComponent extends Component {
         // window.location.reload();
     }
 
+    buy(event) {
+        OrderService.addItemToOrder(event.target.value);
+    }
+
 
     render() {
         return (
             <div className="container">
-                <div className="row">
-                    <div id="book-name">
-                        <h2><b>{this.state.name}</b></h2>
-                    </div>
-                </div>
-                <div className="row" id="book-main">
-                    <div className="col-sm-6 w-25 m-1">
+                <div className="d-flex">
+                    <div className="m-3">
                         <Image src={this.state.image} style={{width: '15rem', height: '25rem'}}/>
                     </div>
-                    <div className="col-sm-6 w-25 text-right">
-                        <Button>
-                            Купить
-                        </Button>
-                        <div><b>{this.state.price}</b></div>
+                    <div className="row">
+                        <div className="p-3">
+                            <div>
+                                <h2><b>{this.state.name}</b></h2>
+                            </div>
+                            <h4>Описание</h4>
+                            <p align="justify">{this.state.description}</p>
+                            <div className="text-center">
+                                <div><b>{this.state.price} грн</b></div>
+                                <Button value={this.state.id} type="submit" onClick={this.buy}>
+                                    Купить
+                                </Button>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div className="row" id="book-description">
-                    <h4>Описание</h4>
-                    <p align="justify">{this.state.description}</p>
                 </div>
                 <div className="row">
                     <div>
