@@ -7,18 +7,25 @@ class CardComponent extends Component {
         super(props);
 
         this.state = {
+            orderId: '',
             items: [],
             fullPrice: ''
         }
+        this.deleteItem = this.deleteItem.bind(this);
     }
 
     componentDidMount() {
         OrderService.basketList().then((res) => {
-            this.setState({items: res.data.books})
+            this.setState({items: res.data[0].books})
             let price = 0;
-            res.data.books.map(book => price += book.price)
+            res.data[0].books.map(book => price += book.price)
             this.setState({fullPrice: price});
+            this.setState({orderId: res.data[1].orderId})
         });
+    }
+
+    deleteItem = (event) => {
+        OrderService.deleteItemFromOrder(this.state.orderId, event.target.value);
     }
 
     render() {
@@ -45,6 +52,9 @@ class CardComponent extends Component {
                                     </td>
                                     <td>{item.name}</td>
                                     <td>{item.price}</td>
+                                    <td style={{width: '2rem'}}>
+                                        <Button value={item.bookId} onClick={this.deleteItem}>Удалить</Button>
+                                    </td>
                                 </tr>
                                 </tbody>
                         )

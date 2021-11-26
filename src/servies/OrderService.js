@@ -17,6 +17,11 @@ class OrderService {
                     {
                         "userId": res.data.id,
                         "bookId": bookId
+                    },
+                    {
+                        headers: {
+                            Authorization: 'Bearer ' + jwt
+                        }
                     }).then(() => {
                     alert("Товар добавлен в корзину")
                 });
@@ -51,6 +56,19 @@ class OrderService {
         });
     }
 
+    getUserOrders(id) {
+        return axios.get(API_URL + '/orders/user/' + id + '/');
+    }
+
+    deleteItemFromOrder(orderId, itemId) {
+        let jwt = localStorage["access_token"];
+        UserService.isAuth();
+        return axios.delete(API_URL + '/orders/' + orderId + '/items/' + itemId + '/', {
+            headers: {
+                Authorization: 'Bearer ' + jwt
+            }
+        });
+    }
 }
 
 export default new OrderService()
