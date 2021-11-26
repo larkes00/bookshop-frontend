@@ -37,6 +37,19 @@ class CategoryService {
                 }
             });
     }
+
+    updateCategory(id, name) {
+        let jwt = localStorage["access_token"];
+        UserService.isAuth();
+        return axios.put(API_URL + '/categories/' + id + '/', {
+                "name": name
+            },
+            {
+                headers: {
+                    Authorization: 'Bearer ' + jwt
+                }
+            });
+    }
 }
 
 export default new CategoryService();
