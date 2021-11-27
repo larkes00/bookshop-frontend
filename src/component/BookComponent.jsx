@@ -46,7 +46,9 @@ class BookComponent extends Component {
     setComment = (event) => {
         event.preventDefault();
         CommentService.createComment(this.state.id, this.state.comment);
-        window.location.reload();
+        setTimeout(() => {
+            window.location.reload(false);
+        }, 1500);
     }
 
     buy(event) {
@@ -102,7 +104,7 @@ class BookComponent extends Component {
                                     </Form>
                                 </div>
                                 :
-                                <div></div>
+                                <div/>
                         }
                         {
                             this.state.comments.length === 0 ?

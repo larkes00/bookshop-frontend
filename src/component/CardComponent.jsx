@@ -32,24 +32,26 @@ class CardComponent extends Component {
 
     deleteItem = (event) => {
         OrderService.deleteItemFromOrder(this.state.orderId, event.target.value);
-        window.location.reload();
+        setTimeout(() => {
+            window.location.reload(false);
+        }, 1500);
     }
 
     orderedItems = (event) => {
         event.preventDefault();
         if (!this.state.address) {
             alert("Не установлено адресс доставки");
-        }
-        if (this.state.items.length === 0) {
+        } else if (this.state.items.length === 0) {
             alert("Нет товаров для заказа");
+        } else {
+            OrderService.setDestinationAddress(this.state.orderId, this.state.address, "Обрабатывается")
+                .then(() => {
+                    alert('Заказ создан');
+                    this.props.history.goBack();
+                }).catch(() => {
+                alert('Произошла ошибка');
+            });
         }
-        OrderService.setDestinationAddress(this.state.orderId, this.state.address, "Обрабатывается")
-            .then((res) => {
-                alert('Заказ создан');
-                this.props.history.goBack();
-            }).catch((res) => {
-            alert('Произошла ошибка');
-        });
     }
 
     render() {
@@ -85,7 +87,7 @@ class CardComponent extends Component {
                     }
                     <tr className="text-center">
                         <td colSpan="1" style={{'font-size': '1.2rem'}}><b>Итоговая цена: </b></td>
-                        <td></td>
+                        <td/>
                         <td colSpan="1" style={{'font-size': '1.2rem'}}><b>{this.state.fullPrice} грн</b>
                         </td>
                     </tr>
