@@ -37,11 +37,21 @@ class RegistrationComponent extends Component {
             emailAddress: this.state.emailAddress,
             phoneNumber: this.state.phoneNumber
         }
-        UserService.registration(user).then(() => {
-            this.props.history.push('/login');
-        }).catch(() => {
-            alert('Не правильно введенные данные');
-        })
+        let emptyField = false;
+        for (let key in user) {
+            if (user[key] === "") {
+                alert("Не могут быть пустые поля")
+                emptyField = true;
+                break;
+            }
+        }
+        if (!emptyField) {
+            UserService.registration(user).then(() => {
+                this.props.history.push('/login');
+            }).catch(() => {
+                alert('Не правильно введенные данные');
+            })
+        }
     }
 
     changeSecondNameHandler(event) {

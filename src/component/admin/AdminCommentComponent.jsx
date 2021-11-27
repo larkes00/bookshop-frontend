@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {Link} from "react-router-dom";
 import {Button} from "react-bootstrap";
 import CommentService from "../../servies/CommentService";
-import CategoryService from "../../servies/CategoryService";
 
 class AdminCommentComponent extends Component {
     constructor(props) {
@@ -25,7 +24,7 @@ class AdminCommentComponent extends Component {
         event.preventDefault();
         let id = event.target.value;
         CommentService.deleteComment(id);
-        setTimeout(time => {
+        setTimeout(() => {
             window.location.reload(false);
         }, 1500);
     }

@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {Link} from "react-router-dom";
 import {Button} from "react-bootstrap";
 import UserService from "../../servies/UserService";
-import OrderService from "../../servies/OrderService";
 
 class AdminUserComponent extends Component {
     constructor(props) {
@@ -25,7 +24,7 @@ class AdminUserComponent extends Component {
         event.preventDefault();
         let id = event.target.value;
         UserService.deleteUser(id);
-        setTimeout(time => {
+        setTimeout(() => {
             window.location.reload(false);
         }, 1500);
     }
