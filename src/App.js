@@ -18,6 +18,7 @@ import AdminCreateCategoryComponent from "./component/admin/creation/AdminCreate
 import AdminCreateBookComponent from "./component/admin/creation/AdminCreateBookComponent";
 import jwt_decode from "jwt-decode";
 import AdminUpdateCategoryComponent from "./component/admin/update/AdminUpdateCategoryComponent";
+import ChangeUserComponent from "./component/ChangeUserComponent";
 
 function App() {
     let jwt = localStorage["access_token"];
@@ -44,6 +45,7 @@ function App() {
                             <Route exact path="/admin/category/create" component={AdminCreateCategoryComponent}/>
                             <Route exact path="/admin/book/create" component={AdminCreateBookComponent}/>
                             <Route exact path="/admin/category/:id/update" component={AdminUpdateCategoryComponent}/>
+                            <Route exact path="/profile/:id/change" component={ChangeUserComponent}/>
                         </Switch>
                     </Router>
                 </div>
@@ -63,6 +65,7 @@ function App() {
                     <Route path="/book/:id" component={BookComponent}/>
                     <Route exact path="/card" component={CardComponent}/>
                     <Route exact path="/profile" component={ProfileComponent}/>
+                    <Route exact path="/profile/:id/change" component={ChangeUserComponent}/>
                 </Switch>
             </Router>
         </div>

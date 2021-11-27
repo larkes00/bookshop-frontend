@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import UserService from "../servies/UserService";
 import jwt_decode from "jwt-decode";
-import {Table} from "react-bootstrap";
+import {Button, Table} from "react-bootstrap";
 import OrderService from "../servies/OrderService";
+import {Link} from "react-router-dom";
 
 class ProfileComponent extends Component {
     constructor(props) {
@@ -73,6 +74,11 @@ class ProfileComponent extends Component {
                         </tr>
                         </tbody>
                     </Table>
+                    <div className="row">
+                        <Link to={`/profile/${this.state.id}/change`}>
+                            <Button>Изменить</Button>
+                        </Link>
+                    </div>
                 </div>
                 <div className="row" style={{width: '95vw'}}>
                     <h4 style={{"margin-left": '2rem'}}>Заказы</h4>

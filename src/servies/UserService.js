@@ -71,6 +71,23 @@ class UserService {
             }
         });
     }
+
+    update(id, firstName, secondName, patronymic, phoneNumber) {
+        let jwt = localStorage["access_token"];
+        this.isAuth();
+        return axios.patch(API_URL + '/users/' + id + '/',
+            {
+                "secondName": secondName,
+                "firstName": firstName,
+                "patronymic": patronymic,
+                "phoneNumber": phoneNumber
+            },
+            {
+                headers: {
+                    Authorization: 'Bearer ' + jwt
+                }
+            });
+    }
 }
 
 export default new UserService()
