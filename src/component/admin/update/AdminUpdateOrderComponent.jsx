@@ -21,7 +21,7 @@ class AdminUpdateOrderComponent extends Component {
 
     update = (event) => {
         event.preventDefault();
-        OrderService.setDestinationAddress(this.state.id, "", this.state.status).catch((res) => {
+        OrderService.setDestinationAddress(this.state.id, "", this.state.status).catch(() => {
             alert("Произошла ошибка")
         });
         this.props.history.push('/admin')
@@ -38,7 +38,7 @@ class AdminUpdateOrderComponent extends Component {
                     </Form.Group>
                     <div className="text-center">
                         <Button variant="primary" type="submit" onClick={this.update}>
-                            Создать
+                            Изменить
                         </Button>
                     </div>
                 </Form>

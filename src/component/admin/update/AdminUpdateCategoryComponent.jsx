@@ -37,7 +37,7 @@ class AdminUpdateCategoryComponent extends Component {
                     </Form.Group>
                     <div className="text-center">
                         <Button variant="primary" type="submit" onClick={this.update}>
-                            Создать
+                            Изменить
                         </Button>
                     </div>
                 </Form>

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import BookService from "../../servies/BookService";
-import {Button, Table} from "react-bootstrap";
+import {Button} from "react-bootstrap";
 import {Link} from "react-router-dom";
 
 class AdminBooksComponent extends Component {
@@ -24,7 +24,7 @@ class AdminBooksComponent extends Component {
         event.preventDefault();
         let id = event.target.value;
         BookService.deleteBook(id);
-        setTimeout(time => {
+        setTimeout(() => {
             window.location.reload(false);
         }, 1500);
     }
@@ -49,6 +49,8 @@ class AdminBooksComponent extends Component {
                         <div className="col">ID</div>
                         <div className="col">Имя</div>
                         <div className="col">Категория</div>
+                        <div className="col">Цена</div>
+                        <div className="col">Количество</div>
                         <div className="col"/>
                     </div>
                     <br/>
@@ -58,9 +60,13 @@ class AdminBooksComponent extends Component {
                                 <div className="col">{book.id}</div>
                                 <div className="col">{book.name}</div>
                                 <div className="col">{book.category}</div>
+                                <div className="col">{book.price}</div>
+                                <div className="col">{book.booksAvailableNumber}</div>
                                 <div className="col">
                                     <Button className="m-l" value={book.id} onClick={this.deleteBook}>Удалить</Button>
-                                    <Button className="m-1">Изменить</Button>
+                                    <Link to={`/admin/book/${book.id}/update`}>
+                                        <Button className="m-1">Изменить</Button>
+                                    </Link>
                                 </div>
                             </div>
                     )}

@@ -1,6 +1,5 @@
 import axios from "axios";
 import UserService from "./UserService";
-import jwt_decode from "jwt-decode";
 
 const API_URL = "https://book-shop-course.herokuapp.com/api/v1";
 
@@ -46,6 +45,20 @@ class BookService {
 
     getBookComments(id) {
         return axios.get(API_URL + '/books/' + id + '/comments/');
+    }
+
+    updateBook(id, price, booksAvailableNumber) {
+        const formData = new FormData();
+        formData.append('price', price);
+        formData.append("booksAvailableNumber", booksAvailableNumber)
+        let jwt = localStorage["access_token"];
+        UserService.isAuth();
+        return axios.patch(API_URL + '/books/' + id + '/', formData,
+            {
+                headers: {
+                    Authorization: 'Bearer ' + jwt
+                }
+            });
     }
 
 }
