@@ -57,9 +57,8 @@ class AdminCommentComponent extends Component {
                                 <div className="col">{comment.userId}</div>
                                 <div className="col">{comment.bookId}</div>
                                 <div className="col">
-                                    <Button className="m-l" value={comment.id}
+                                    <Button className="m-l m-1" value={comment.id}
                                             onClick={this.deleteComment}>Удалить</Button>
-                                    <Button className="m-1">Изменить</Button>
                                 </div>
                             </div>
                     )}

@@ -58,7 +58,9 @@ class AdminOrderComponent extends Component {
                                 <div className="col">
                                     <Button className="m-l" value={order.orderId}
                                             onClick={this.deleteOrder}>Удалить</Button>
-                                    <Button className="m-1">Изменить</Button>
+                                    <Link to={`/admin/order/${order.orderId}/update`}>
+                                        <Button className="m-1">Изменить</Button>
+                                    </Link>
                                 </div>
                             </div>
                     )}

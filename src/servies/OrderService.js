@@ -70,11 +70,12 @@ class OrderService {
         });
     }
 
-    setDestinationAddress(id, address) {
+    setDestinationAddress(id, address, status) {
         let jwt = localStorage["access_token"];
         UserService.isAuth();
         const formData = new FormData();
         formData.append('deliveryAddress', address);
+        formData.append("status", status)
         return axios.patch(API_URL + '/orders/' + id + '/', formData,{
             headers: {
                 Authorization: 'Bearer ' + jwt

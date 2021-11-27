@@ -43,10 +43,11 @@ class CardComponent extends Component {
         if (this.state.items.length === 0) {
             alert("Нет товаров для заказа");
         }
-        OrderService.setDestinationAddress(this.state.orderId, this.state.address).then((res) => {
-            alert('Заказ создан');
-            this.props.history.goBack();
-        }).catch((res) => {
+        OrderService.setDestinationAddress(this.state.orderId, this.state.address, "Обрабатывается")
+            .then((res) => {
+                alert('Заказ создан');
+                this.props.history.goBack();
+            }).catch((res) => {
             alert('Произошла ошибка');
         });
     }

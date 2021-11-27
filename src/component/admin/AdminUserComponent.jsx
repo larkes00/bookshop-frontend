@@ -57,9 +57,8 @@ class AdminUserComponent extends Component {
                                 <div className="col">{user.email}</div>
                                 <div className="col">{user.phoneNumber}</div>
                                 <div className="col">
-                                    <Button className="m-l" value={user.userId}
+                                    <Button className="m-l m-1" value={user.userId}
                                             onClick={this.deleteUser}>Удалить</Button>
-                                    <Button className="m-1">Изменить</Button>
                                 </div>
                             </div>
                     )}
